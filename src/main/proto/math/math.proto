@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package math;
+
+option java_package = "ru.kpfu.grpctask.proto.math";
+option java_multiple_files = true;
+
+message SqrtRequest {
+    double number = 1;
+};
+
+message SqrtResponse {
+    double result = 1;
+};
+
+message STDRequest {
+    double number = 1;
+};
+
+message STDResponse {
+    double result = 1;
+};
+
+message FactorsRequest {
+    int32 number = 1;
+};
+
+message FactorsResponse {
+    int32 result = 1;
+};
+
+message MaxRequest {
+    double number = 1;
+};
+
+message MaxResponse {
+    double result = 1;
+};
+
+service MathService {
+    //Unary
+    rpc GetSqrt(SqrtRequest) returns (SqrtResponse) {};
+
+    //ClientStreaming
+    rpc GetSTD(stream STDRequest) returns (STDResponse) {};
+
+    //Server Streaming
+    rpc GetFactors(FactorsRequest) returns (stream FactorsResponse) {};
+
+    //BiDi Streaming
+    rpc GetMax(stream MaxRequest) returns (stream MaxResponse) {};
+};
